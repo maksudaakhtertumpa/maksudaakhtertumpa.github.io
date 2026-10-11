@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maksuda Akther Tumpa | AI engineering portfolio</title>
+<meta name="description" content="Final-year IT student at the University of Cyberjaya building AI systems that cite their sources: retrieval-augmented generation, evaluation and full-stack delivery.">
+<meta property="og:title" content="Maksuda Akther Tumpa | AI engineering portfolio">
+<meta property="og:description" content="AI systems that cite their sources. Projects with measured results, code and live demos.">
+<meta property="og:image" content="https://maksudaakhtertumpa.github.io/assets/eka-ask.jpg">
+<meta property="og:url" content="https://maksudaakhtertumpa.github.io/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#projects">Skip to projects</a>
+
+<header class="top">
+  <div class="wrap top-inner">
+    <a class="brand" href="#">Maksuda Akther Tumpa</a>
+    <nav aria-label="Sections">
+      <a href="#projects">Projects</a>
+      <a href="#background">Background</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero wrap" aria-labelledby="hero-title">
+    <h1 id="hero-title">I build AI systems that show their sources.</h1>
+    <p class="lede">
+      I'm Maksuda, a final-year Information Technology student at the University of Cyberjaya.
+      My projects answer questions from documents and back every answer with the sentence it came from,
+      checked word for word<a class="cite" href="#src-1" aria-describedby="cite-hint">1</a>.
+      I measure them on questions they were never tuned on<a class="cite" href="#src-2" aria-describedby="cite-hint">2</a>
+      and report what fails as well as what works<a class="cite" href="#src-3" aria-describedby="cite-hint">3</a>.
+    </p>
+    <p class="looking">Looking for an AI engineering internship from February 2027.</p>
+    <div class="actions">
+      <a class="btn primary" href="mailto:maksudaaktertumpa@gmail.com">Email me</a>
+      <a class="btn" href="cv/Maksuda_Akther_Tumpa_CV.pdf" download>Download CV (PDF)</a>
+      <a class="btn" href="https://github.com/maksudaakhtertumpa">GitHub</a>
+      <a class="btn" href="https://www.linkedin.com/in/maksudaakhtertumpa">LinkedIn</a>
+    </div>
+    <p id="cite-hint" class="hint">The small numbers link to the evidence for each claim, listed under Sources at the end.</p>
+  </section>
+
+  <section id="projects" class="projects" aria-labelledby="projects-title">
+    <div class="wrap">
+      <h2 id="projects-title">Projects</h2>
+    </div>
+
+    <article class="project flagship wrap" aria-labelledby="p-eka">
+      <figure class="shot">
+        <img src="assets/eka-ask.jpg" width="1400" height="940" alt="Enterprise Knowledge AI answering a leave-policy question; the quoted words are highlighted inside the source passage.">
+      </figure>
+      <div class="body">
+        <h3 id="p-eka">Enterprise Knowledge AI</h3>
+        <p class="what">Ask questions about company documents and get answers that cite the exact sentence they came from, or an honest "not enough evidence". Runs on a laptop for $0.</p>
+        <ul class="proof">
+          <li>Compared keyword, semantic and hybrid search on a labelled benchmark; semantic search with a cross-encoder reranker raised ranking quality (MRR) from 0.54 to 0.96<a class="cite" href="#src-4">4</a>, and reached 1.00 on 38 held-out questions<a class="cite" href="#src-2">2</a>.</li>
+          <li>Two answer checks: each quote must appear in its source, and a multilingual NLI model must agree the sentence follows from it. On held-out questions, 9 of 10 unanswerable questions were refused<a class="cite" href="#src-2">2</a>.</li>
+          <li>Found the NLI check wrongly removed 27% of correct sentences; scoring short sentence windows cut that to 5%<a class="cite" href="#src-3">3</a>.</li>
+          <li>Next.js interface, rate limits, threat model, hardened Docker containers; 440 Python, 54 UI and 11 browser tests in CI<a class="cite" href="#src-5">5</a>.</li>
+        </ul>
+        <p class="stack">Python, FastAPI, PyTorch, Ollama (Qwen 3.5), ChromaDB, SQLite FTS5, Next.js, TypeScript, Docker, GitHub Actions</p>
+        <p class="links">
+          <a href="https://github.com/maksudaakhtertumpa/enterprise-knowledge-ai">Code and README</a>
+          <a href="https://github.com/maksudaakhtertumpa/enterprise-knowledge-ai/blob/main/docs/evaluation/README.md">Evaluation report</a>
+          <a href="https://github.com/maksudaakhtertumpa/enterprise-knowledge-ai/blob/main/docs/AWS.md">AWS design</a>
+        </p>
+      </div>
+    </article>
+
+    <article class="project wrap" aria-labelledby="p-askuoc">
+      <figure class="shot">
+        <img src="assets/askuoc-chat.jpg" width="1280" height="980" loading="lazy" alt="AskUoC answering a question about Diploma in IT fees, with numbered sources from the university website.">
+      </figure>
+      <div class="body">
+        <h3 id="p-askuoc">AskUoC</h3>
+        <p class="what">A chatbot for the University of Cyberjaya that answers questions about programmes, fees, scholarships and admission from the university's own website, with a source for every answer.</p>
+        <ul class="proof">
+          <li>LangGraph pipeline: query rewriting, hybrid search with RRF, reranking and relevance grading, so it says "not found" instead of guessing<a class="cite" href="#src-6">6</a>.</li>
+          <li>Fixed wrong fee answers by storing fee tables one programme row per chunk<a class="cite" href="#src-6">6</a>.</li>
+          <li>Accounts with roles, an admin console, fallbacks when the AI model or embeddings are unavailable, and CI with security scans and a Docker smoke test<a class="cite" href="#src-6">6</a>.</li>
+        </ul>
+        <p class="stack">Python, LangGraph, FastAPI, PostgreSQL + pgvector, Redis, Gemini, Next.js, Docker</p>
+        <p class="links">
+          <a href="https://ask-uo-c.vercel.app/">Live demo</a>
+          <a href="https://github.com/maksudaakhtertumpa/AskUoC">Code and README</a>
+        </p>
+      </div>
+    </article>
+
+    <article class="project wrap" aria-labelledby="p-fresho">
+      <figure class="shot">
+        <img src="assets/fresho-home.jpg" width="1400" height="698" loading="lazy" alt="FRESHO grocery store home page with a produce photo and the headline Fresh groceries, better living.">
+      </figure>
+      <div class="body">
+        <h3 id="p-fresho">FRESHO</h3>
+        <p class="what">A responsive online grocery store: browse and search products, a cart saved across every page, checkout with tax and delivery worked out, a shopping-list calculator and a weekly planner.</p>
+        <ul class="proof">
+          <li>One shared cart module is the only code that reads or writes saved data, and it checks what it reads back, so a damaged entry can't break the totals<a class="cite" href="#src-7">7</a>.</li>
+          <li>Form validation that explains each error per field and clears it as soon as the field is fixed<a class="cite" href="#src-7">7</a>.</li>
+        </ul>
+        <p class="stack">HTML, CSS, JavaScript (University of Cyberjaya project)</p>
+        <p class="links">
+          <a href="https://maksudaakhtertumpa.github.io/FRESHO/">Live demo</a>
+          <a href="https://github.com/maksudaakhtertumpa/FRESHO">Code and README</a>
+        </p>
+      </div>
+    </article>
+  </section>
+
+  <section id="background" class="background wrap" aria-labelledby="background-title">
+    <h2 id="background-title">Background</h2>
+    <div class="grid">
+      <div>
+        <h3>Education</h3>
+        <p><strong>Bachelor of Information Technology</strong><br>University of Cyberjaya, Jul 2024 to Jul 2027 (expected)</p>
+        <p>CGPA 3.65, Dean's List 2025/2026</p>
+        <p class="muted">Coursework: Artificial Intelligence, Data Mining and Knowledge Discovery, Data Science, Object-Oriented Programming, Database Systems, Web Application Development</p>
+      </div>
+      <div>
+        <h3>Certifications</h3>
+        <ul class="plain">
+          <li>Build AI Agents using MCP, IBM (Coursera)</li>
+          <li>RAG for Generative AI Applications Specialization, IBM Skills Network (Coursera)</li>
+          <li>Develop Generative AI Applications: Get Started, IBM (Coursera)</li>
+          <li>SQL for Data Science, University of California, Davis (Coursera)</li>
+        </ul>
+        <p class="muted">Full list on <a href="https://www.linkedin.com/in/maksudaakhtertumpa">LinkedIn</a>.</p>
+      </div>
+      <div>
+        <h3>Skills</h3>
+        <dl class="skills">
+          <dt>Languages</dt><dd>Python, TypeScript, JavaScript, SQL</dd>
+          <dt>AI and LLMs</dt><dd>RAG, embeddings, hybrid search (BM25, RRF), reranking, NLI checks, LangGraph, LangChain, Ollama, Gemini API, evaluation</dd>
+          <dt>Backend and data</dt><dd>FastAPI, REST APIs, PostgreSQL, pgvector, ChromaDB, SQLite, Redis</dd>
+          <dt>Web and tools</dt><dd>Next.js, React, Tailwind CSS, Git, GitHub Actions, Docker, pytest, Playwright, Linux</dd>
+        </dl>
+      </div>
+      <div>
+        <h3>Languages spoken</h3>
+        <p>Bengali (native), English (full professional), Hindi (conversational)</p>
+        <p class="muted">Based in Cyberjaya, Selangor, Malaysia.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact wrap" aria-labelledby="contact-title">
+    <h2 id="contact-title">Contact</h2>
+    <p>Email is the quickest way to reach me.</p>
+    <p class="actions">
+      <a class="btn primary" href="mailto:maksudaaktertumpa@gmail.com">maksudaaktertumpa@gmail.com</a>
+      <a class="btn" href="https://www.linkedin.com/in/maksudaakhtertumpa">LinkedIn</a>
+      <a class="btn" href="https://github.com/maksudaakhtertumpa">GitHub</a>
+    </p>
+  </section>
+
+  <section class="sources wrap" aria-labelledby="sources-title">
+    <h2 id="sources-title">Sources</h2>
+    <ol>
+      <li id="src-1"><a href="https://github.com/maksudaakhtertumpa/enterprise-knowledge-ai#how-it-works">How citations are checked</a>: each quote must occur in the passage the model was shown; numbers and negations must match exactly.</li>
+      <li id="src-2"><a href="https://github.com/maksudaakhtertumpa/enterprise-knowledge-ai/blob/main/docs/evaluation/README.md">Evaluation report</a>: 48 held-out questions written before any held-out run; retrieval MRR 1.00 on 38 scored queries; 9 of 10 unanswerable questions refused.</li>
+      <li id="src-3"><a href="https://github.com/maksudaakhtertumpa/enterprise-knowledge-ai/blob/main/docs/phases/phase-7-evaluation-security.md">Phase 7 notes</a>: what the entailment check caught, what it got wrong, and the sentence-window fix.</li>
+      <li id="src-4"><a href="https://github.com/maksudaakhtertumpa/enterprise-knowledge-ai/blob/main/eval/README.md">Retrieval evaluation</a>: BM25 MRR 0.538, dense 0.900, dense with reranking 0.962 on the development set (MacBook Air M4).</li>
+      <li id="src-5"><a href="https://github.com/maksudaakhtertumpa/enterprise-knowledge-ai/actions">CI runs</a> and <a href="https://github.com/maksudaakhtertumpa/enterprise-knowledge-ai/blob/main/docs/SECURITY.md">security notes</a>.</li>
+      <li id="src-6"><a href="https://github.com/maksudaakhtertumpa/AskUoC#how-it-works">AskUoC README</a>: pipeline, design decisions and evaluation.</li>
+      <li id="src-7"><a href="https://github.com/maksudaakhtertumpa/FRESHO#how-it-works">FRESHO README</a>: how the cart and validation work.</li>
+    </ol>
+  </section>
+</main>
+
+<footer class="wrap foot">
+  <p>Hosted free on GitHub Pages.</p>
+</footer>
+
+<script>
+  // Following a citation marks the source it points to, the same way the projects
+  // highlight a verified quote. Respects reduced-motion (no smooth scrolling then).
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest("a.cite");
+    if (!link) return;
+    const target = document.querySelector(link.getAttribute("href"));
+    if (!target) return;
+    event.preventDefault();
+    document.querySelectorAll(".sources li.marked").forEach((li) => li.classList.remove("marked"));
+    const smooth = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    target.scrollIntoView({ behavior: smooth ? "smooth" : "auto", block: "center" });
+    target.classList.add("marked");
+    target.setAttribute("tabindex", "-1");
+    target.focus({ preventScroll: true });
+    history.replaceState(null, "", link.getAttribute("href"));
+  });
+</script>
+</body>
+</html>

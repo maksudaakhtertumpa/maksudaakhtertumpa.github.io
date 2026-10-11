@@ -9,4 +9,3 @@ every push to `main` publishes the site.
 - `index.html`: the page
 - `style.css`: styles (light and dark, mobile layout)
 - `assets/`: project screenshots and the icon
-- `cv/`: CV as a PDF (replace the file to update it; keep the file name)

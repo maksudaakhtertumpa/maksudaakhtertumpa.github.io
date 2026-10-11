@@ -164,6 +164,17 @@ h2 {
 .plain { list-style: none; padding: 0; margin: 0 0 0.6rem; }
 .plain li { padding: 0.35rem 0; border-bottom: 1px solid var(--rule); }
 .plain li:last-child { border-bottom: 0; }
+.grid h3.next { margin-top: 1.75rem; }
+.cert-block { grid-column: 1 / -1; }
+.cert-cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 2.5rem; }
+.cert-group {
+  margin: 1.1rem 0 0.2rem;
+  font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--muted);
+}
+.certs a { text-decoration-color: var(--rule); }
+.certs a:hover { text-decoration-color: currentColor; }
+.certs span { display: block; color: var(--muted); font-size: 0.88rem; }
 .skills { margin: 0; }
 .skills dt { font-weight: 600; font-size: 0.95rem; }
 .skills dd { margin: 0 0 0.6rem; color: var(--muted); }
@@ -188,6 +199,7 @@ h2 {
 @media (max-width: 860px) {
   .project, .project.flagship { grid-template-columns: 1fr; }
   .grid { grid-template-columns: 1fr; }
+  .cert-cols { grid-template-columns: 1fr; }
 }
 @media (max-width: 520px) {
   .top nav { gap: 0.9rem; font-size: 0.9rem; }
